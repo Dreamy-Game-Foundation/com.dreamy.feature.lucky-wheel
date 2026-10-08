@@ -2740,9 +2740,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1316269333568228854, guid: 58d7c1a38f4e4d83920eff2d9a6de08a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 243755289008111586}
-    - targetCorrespondingSourceObject: {fileID: 1316269333568228854, guid: 58d7c1a38f4e4d83920eff2d9a6de08a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2119677658576199831}
   m_SourcePrefab: {fileID: 100100000, guid: 58d7c1a38f4e4d83920eff2d9a6de08a, type: 3}
 --- !u!1 &2962572513328236489 stripped
 GameObject:
@@ -2777,21 +2774,6 @@ MonoBehaviour:
   - {fileID: 9131811527095876635}
   spinDuration: 3
   fullRotations: 5
---- !u!114 &2119677658576199831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2962572513328236489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fc4cb9c1803a8e4e91176141b13dab8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Dreamy.Feature.LuckyWheel.Integration.Runtime::Dreamy.Feature.LuckyWheel.Integration.LuckyWheelSampleController
-  panel: {fileID: 243755289008111586}
-  configResourcePath: DataConfig/luckyWheel
-  randomSeed: 20261002
 --- !u!225 &6985192109476338890 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 6604841990668801781, guid: 58d7c1a38f4e4d83920eff2d9a6de08a, type: 3}

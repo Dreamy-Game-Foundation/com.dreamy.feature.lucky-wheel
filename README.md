@@ -20,6 +20,23 @@ The wallet must treat a repeated `ResourceGrantRequest.TransactionId` as success
 
 ## Sample
 
-Import **Lucky Wheel Feature** from Package Manager. `LuckyWheelPanel.prefab` is a prefab variant of `com.dreamy.feature/Runtime/Prefabs/BaseFeaturePanel.prefab`. The sample contains six rewards and a coroutine-driven ease-out spin animation. Its in-memory save and wallet are demo-only; replace them with production services.
+Import **Lucky Wheel Feature** from Package Manager. `LuckyWheelPanel.prefab` is a prefab variant of `com.dreamy.feature/Runtime/Prefabs/BaseFeaturePanel.prefab`. The sample contains six rewards and a coroutine-driven ease-out spin animation. LuckyWheelFeatureInstaller receives the host's persistent save and wallet; no memory-only fallback is installed.
 
 Device UTC and local random selection are appropriate for offline casual games, not server-authoritative or regulated rewards.
+
+## Production integration and presenter lifecycle
+
+The editable integration entry point is `LuckyWheelFeatureInstaller` in Samples~. Runtime `LuckyWheelInstaller` remains available for custom UI; games using the supplied views call only the feature installer. All presenters implement the engine-independent `IPanelPresenter` lifecycle in `Dreamy.UI.Presentation`.
+
+```csharp
+LuckyWheelFeatureInstaller.RegisterConfig(dataConfig); // Before dataConfig.InitializeAsync.
+// After config/save/wallet readiness, using the same factory as other features:
+LuckyWheelFeatureInstaller.Install(factory, config, save, wallet, clock, random);
+// Or reuse a host-owned service: LuckyWheelFeatureInstaller.Install(factory, service);
+```
+
+Dependencies in this example belong to the composition root. No installer creates an in-memory wallet/save fallback. Model/service own rewards and checkpoints; views only render state and emit intent. Add direct asmdef references to the integration assembly and Dreamy.UI.Presentation wherever their APIs are used.
+
+After assigning the shared factory to the scene's PanelManager, any caller can open `LuckyWheelPanel` with Show/Transition by address, or Show with a prefab. Each opening creates one presenter; close, disable, destroy or failed show release it. Cached reopen creates a fresh presenter. No per-feature controller is required.
+
+Sandbox validation: `python3 LocalPackages/com.dreamy.feature.settings/Tests~/validate-settings.py --shop --features`. This compiles runtime/integration/sample assemblies against their declared references and runs pure managed model/presenter regressions. Unity scene/coroutine/raycast lifecycle still requires Editor/PlayMode validation.

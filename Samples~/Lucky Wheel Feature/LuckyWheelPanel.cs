@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using Dreamy.LuckyWheel;
 using Dreamy.UI;
@@ -116,7 +117,7 @@ namespace Dreamy.Feature.LuckyWheel.Integration
             statusText.text = $"Spin error: {status}";
         }
 
-        public void Close() => Hide();
+        public void Close() => Hide().Forget();
 
         private IEnumerator SpinToSegment(LuckyWheelSpinResult result)
         {

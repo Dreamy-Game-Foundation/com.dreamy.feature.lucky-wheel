@@ -1,8 +1,9 @@
 using System;
+using Dreamy.UI;
 
 namespace Dreamy.LuckyWheel
 {
-    public sealed class LuckyWheelPresenter : IDisposable
+    public sealed class LuckyWheelPresenter : IPanelPresenter
     {
         private readonly ILuckyWheelService service;
         private readonly ILuckyWheelView view;
@@ -46,6 +47,7 @@ namespace Dreamy.LuckyWheel
             view.RevealCompleted -= CompleteReveal;
             view.CloseRequested -= Close;
             isBound = false;
+            activeRevealTransactionId = null;
         }
 
         private void Bind()
