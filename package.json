@@ -1,6 +1,6 @@
 {
   "name": "com.dreamy.feature.lucky-wheel",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "displayName": "Dreamy Lucky Wheel",
   "description": "Reusable weighted lucky wheel with recoverable, idempotent economy rewards and host-owned presentation.",
   "unity": "6000.0",
